@@ -1,30 +1,24 @@
 export const profile = {
   name: "Josias Sekhebesa",
 
-  title: "Enterprise AI Engineer",
+  role: "Enterprise AI Engineer",
+
+  title:
+    "Enterprise AI Engineer",
 
   tagline:
-    "Designing production-ready Enterprise AI solutions that improve operations, accelerate decision-making, and deliver measurable business value.",
+    "Building Enterprise AI that delivers measurable business outcomes.",
 
   description:
-    "I design and build enterprise AI solutions using Azure OpenAI, Agentic AI, Retrieval-Augmented Generation (RAG), and intelligent automation that help organisations accelerate decision-making, improve operational efficiency, and create measurable business value.",
+    "I design and deploy secure, production-ready AI systems using Azure OpenAI, Agentic AI, Retrieval-Augmented Generation (RAG), intelligent automation and cloud-native architectures.",
 
   location: "Johannesburg, South Africa",
 
   email: "sekhebesa@gmail.com",
 
-  github: "https://github.com/...",
+  linkedin:
+    "https://www.linkedin.com/in/josias-sekhebesa/",
 
-  linkedin: "https://linkedin.com/in/josias-sekhebesa",
-
-  technologies: [
-    "Azure AI",
-    "Azure OpenAI",
-    "Agentic AI",
-    "RAG",
-    "LangChain",
-    "Python",
-    "Azure AI Search",
-    "ServiceNow"
-  ]
+  website:
+    "https://josiassekhebesa.com",
 };
