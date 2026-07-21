@@ -8,20 +8,44 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
+
+export const metadata = {
+  title: "Josias Sekhebesa | Enterprise AI Engineer",
+  description:
+    "Enterprise AI Engineer specialising in Azure AI, Generative AI, Agentic AI, Retrieval-Augmented Generation (RAG), and intelligent automation.",
+
+  icons: {
+    icon: "/favicon.png",
+  },
+
+  openGraph: {
+    title: "Josias Sekhebesa | Enterprise AI Engineer",
+    description:
+      "Building intelligent AI systems that deliver measurable business outcomes.",
+    type: "website",
+  },
+};
+
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
+
       <body className={`${geist.className} bg-[#060B14] text-white`}>
+
         <Navbar />
 
         {children}
 
         <Footer />
+
       </body>
+
     </html>
   );
 }
