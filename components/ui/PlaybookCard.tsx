@@ -21,7 +21,7 @@ export default function PlaybookCard({
       </p>
 
       <div className="mt-8 flex items-center gap-2 font-medium text-sky-400 transition group-hover:gap-4">
-        Learn More
+        Contact me for a copy
 
         {/* <ArrowRight size={18} /> */}
       </div>
