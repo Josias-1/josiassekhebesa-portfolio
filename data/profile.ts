@@ -14,7 +14,7 @@ export const profile = {
 
   location: "Johannesburg, South Africa",
 
-  email: "sekhebesa@gmail.com",
+  email: "josias@josiassekhebesa.com",
 
   linkedin:
     "https://www.linkedin.com/in/josias-sekhebesa/",

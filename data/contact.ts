@@ -1,5 +1,5 @@
 export const contact = {
-  email: "sekhebesa@gmail.com",
+  email: "josias@josiassekhebesa.com",
 
   location: "Johannesburg, South Africa",
 
