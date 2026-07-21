@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Geist } from "next/font/google";
 
 import "./globals.css";
+import { personSchema } from "@/lib/structured-data";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -21,15 +22,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geist.className} bg-[#060B14] text-white`}
-      >
-        <Navbar />
+    <body className={`${geist.className} bg-[#060B14] text-white`}>
 
-        {children}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personSchema),
+        }}
+      />
 
-        <Footer />
-      </body>
+      <Navbar />
+
+      {children}
+
+      <Footer />
+
+    </body>
     </html>
   );
 }
