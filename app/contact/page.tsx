@@ -1,7 +1,19 @@
+import { Metadata } from "next";
+
 import PageHero from "@/components/ui/PageHero";
 import InfoCard from "@/components/ui/InfoCard";
 import ContactForm from "@/components/forms/ContactForm";
 import { contact } from "@/data/contact";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createMetadata({
+  title: "Contact | Josias Sekhebesa",
+
+  description:
+    "Get in touch with Josias Sekhebesa for Enterprise AI consulting, Azure AI, Generative AI, Agentic AI, Retrieval-Augmented Generation (RAG), intelligent automation, technical leadership, speaking engagements, and collaboration opportunities.",
+
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -13,13 +25,11 @@ export default function ContactPage() {
       />
 
       <section className="mx-auto max-w-7xl px-6 py-24">
-
         <div className="grid gap-16 lg:grid-cols-2">
 
           {/* Left Side */}
 
           <div>
-
             <h2 className="mb-8 text-3xl font-bold text-white">
               Contact Information
             </h2>
@@ -67,19 +77,16 @@ export default function ContactPage() {
               />
 
             </div>
-
           </div>
 
           {/* Right Side */}
 
           <div>
-
             <h2 className="mb-8 text-3xl font-bold text-white">
               Send a Message
             </h2>
 
             <ContactForm />
-
           </div>
 
         </div>
@@ -106,7 +113,6 @@ export default function ContactPage() {
           </a>
 
         </div>
-
       </section>
     </>
   );

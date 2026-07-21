@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+import ContactNotification from "@/emails/ContactNotification";
+import ContactConfirmation from "@/emails/ContactConfirmation";
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
@@ -11,7 +14,12 @@ export async function POST(req: Request) {
       company,
       project,
       message,
+      turnstileToken,
     } = await req.json();
+
+    // ------------------------------------
+    // Validation
+    // ------------------------------------
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -25,41 +33,90 @@ export async function POST(req: Request) {
       );
     }
 
-    const { error } = await resend.emails.send({
-      from: "Website <contact@josiassekhebesa.com>",
-      to: "josias@josiassekhebesa.com",
-      replyTo: email,
-      subject: `New Portfolio Enquiry from ${name}`,
-
-      html: `
-        <h2>New Portfolio Contact</h2>
-
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company || "Not provided"}</p>
-        <p><strong>Project:</strong> ${project || "Not specified"}</p>
-
-        <hr />
-
-        <h3>Message</h3>
-
-        <p>${message}</p>
-      `,
-    });
-
-    if (error) {
-      console.error(error);
-
+    if (!turnstileToken) {
       return NextResponse.json(
         {
           success: false,
-          error: error.message,
+          error: "Security verification failed.",
         },
         {
-          status: 500,
+          status: 400,
         }
       );
     }
+
+    // ------------------------------------
+    // Verify Cloudflare Turnstile
+    // ------------------------------------
+
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET_KEY!,
+          response: turnstileToken,
+        }),
+      }
+    );
+
+    const verification = await verifyResponse.json();
+
+    if (!verification.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Unable to verify security check.",
+        },
+        {
+          status: 403,
+        }
+      );
+    }
+
+    // ------------------------------------
+    // Email 1
+    // Notification to Josias
+    // ------------------------------------
+
+    await resend.emails.send({
+      from: "Josias Sekhebesa <contact@josiassekhebesa.com>",
+
+      to: "josias@josiassekhebesa.com",
+
+      replyTo: email,
+
+      subject: `🚀 New Enterprise AI Enquiry | ${name}`,
+
+      react: ContactNotification({
+        name,
+        email,
+        company,
+        project,
+        message,
+      }),
+    });
+
+    // ------------------------------------
+    // Email 2
+    // Auto reply
+    // ------------------------------------
+
+    await resend.emails.send({
+      from: "Josias Sekhebesa <contact@josiassekhebesa.com>",
+
+      to: email,
+
+      subject: "Thanks for contacting Josias Sekhebesa",
+
+      react: ContactConfirmation({
+        name,
+      }),
+    });
 
     return NextResponse.json({
       success: true,
@@ -71,7 +128,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: "Internal server error.",
+        error: "Something went wrong.",
       },
       {
         status: 500,

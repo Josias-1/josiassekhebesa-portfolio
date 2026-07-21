@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 
 export default function ContactForm() {
+  const turnstileRef = useRef<TurnstileInstance>(null);
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [submittedName, setSubmittedName] = useState("");
+
+  const [token, setToken] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -18,6 +25,13 @@ export default function ContactForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    setErrorMessage("");
+
+    if (!token) {
+      setErrorMessage("Please complete the security verification.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -26,11 +40,16 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          turnstileToken: token,
+        }),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed");
+        throw new Error(result.error || "Unable to send message.");
       }
 
       setSubmittedName(form.name);
@@ -44,9 +63,12 @@ export default function ContactForm() {
         message: "",
       });
 
-    } catch (error) {
-      alert("Something went wrong. Please try again.");
-      console.error(error);
+      setToken("");
+
+      turnstileRef.current?.reset();
+
+    } catch (err: any) {
+      setErrorMessage(err.message);
     }
 
     setLoading(false);
@@ -61,18 +83,16 @@ export default function ContactForm() {
         </h2>
 
         <p className="mt-6 leading-8 text-slate-300">
-          Thank you for reaching out and for your interest in my work.
+          Thank you for reaching out.
         </p>
 
         <p className="mt-4 leading-8 text-slate-300">
-          I've received your enquiry successfully and will personally review your message.
-          You can expect a response within one business day.
+          Your enquiry has been delivered successfully.
         </p>
 
-        <p className="mt-8 leading-8 text-slate-300">
-          In the meantime, feel free to explore more of my Enterprise AI
-          projects, architecture playbooks, and technical work throughout
-          the website.
+        <p className="mt-4 leading-8 text-slate-300">
+          I'll personally review your message and get back to you within
+          one business day.
         </p>
 
         <div className="mt-10">
@@ -108,26 +128,29 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className="rounded-3xl border border-white/10 bg-slate-900/40 p-8"
     >
+
       <div className="space-y-6">
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-300">
+          <label className="mb-2 block text-sm text-slate-300">
             Full Name
           </label>
 
           <input
             required
-            type="text"
             value={form.name}
             onChange={(e) =>
-              setForm({ ...form, name: e.target.value })
+              setForm({
+                ...form,
+                name: e.target.value,
+              })
             }
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-sky-500"
+            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-500"
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-300">
+          <label className="mb-2 block text-sm text-slate-300">
             Email Address
           </label>
 
@@ -136,38 +159,46 @@ export default function ContactForm() {
             type="email"
             value={form.email}
             onChange={(e) =>
-              setForm({ ...form, email: e.target.value })
+              setForm({
+                ...form,
+                email: e.target.value,
+              })
             }
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-sky-500"
+            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-500"
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-300">
+          <label className="mb-2 block text-sm text-slate-300">
             Company
           </label>
 
           <input
-            type="text"
             value={form.company}
             onChange={(e) =>
-              setForm({ ...form, company: e.target.value })
+              setForm({
+                ...form,
+                company: e.target.value,
+              })
             }
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-sky-500"
+            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-500"
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-300">
+          <label className="mb-2 block text-sm text-slate-300">
             Project Type
           </label>
 
           <select
             value={form.project}
             onChange={(e) =>
-              setForm({ ...form, project: e.target.value })
+              setForm({
+                ...form,
+                project: e.target.value,
+              })
             }
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-sky-500"
+            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-500"
           >
             <option value="">Select...</option>
             <option>Enterprise AI</option>
@@ -181,7 +212,7 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-300">
+          <label className="mb-2 block text-sm text-slate-300">
             Message
           </label>
 
@@ -190,20 +221,47 @@ export default function ContactForm() {
             rows={6}
             value={form.message}
             onChange={(e) =>
-              setForm({ ...form, message: e.target.value })
+              setForm({
+                ...form,
+                message: e.target.value,
+              })
             }
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-sky-500"
+            className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-500"
           />
         </div>
 
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+          onSuccess={setToken}
+          onExpire={() => setToken("")}
+          onError={() =>
+            setErrorMessage("Security verification failed.")
+          }
+        />
+
+        {errorMessage && (
+          <p className="text-sm text-red-400">
+            {errorMessage}
+          </p>
+        )}
+
         <button
-          disabled={loading}
-          className="w-full rounded-xl bg-sky-500 px-6 py-4 font-semibold text-white transition hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={loading || !token}
+          className="flex w-full items-center justify-center rounded-xl bg-sky-500 px-6 py-4 font-semibold text-white transition hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {loading ? "Sending..." : "Send Message"}
+          {loading ? (
+            <>
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            "Send Message"
+          )}
         </button>
 
       </div>
+
     </form>
   );
 }

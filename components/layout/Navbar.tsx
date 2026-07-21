@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "./Container";
 import { navigation } from "@/data/navigation";
+import Brand from "@/components/ui/Brand";
 
 export default function Navbar() {
   return (
@@ -12,17 +13,8 @@ export default function Navbar() {
 
 
           {/* Brand */}
-          <Link
-            href="/"
-            className="flex flex-col"
-          >
-            <span className="text-xl font-bold text-white">
-              Josias Sekhebesa
-            </span>
-
-            <span className="text-xs text-sky-400">
-              Enterprise AI Engineer
-            </span>
+          <Link href="/">
+            <Brand size="sm" />
           </Link>
 
 
