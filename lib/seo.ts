@@ -61,10 +61,10 @@ export function createMetadata({
       canonical: url,
     },
 
-    icons: {
-      icon: "/favicon.png",
-      apple: "/apple-touch-icon.png",
-    },
+    // icons: {
+    //   icon: "/icon.png",
+    //   apple: "/apple-touch-icon.png",
+    // },
 
     openGraph: {
       title: title ?? siteConfig.title,

@@ -49,11 +49,20 @@ export default function ContactPage() {
                 description="The best way to start a conversation."
               />
 
-              <InfoCard
-                title="Location"
-                value={contact.location}
-                description="Available for remote, hybrid, and global collaboration."
-              />
+          <InfoCard
+            title="Book a Call with me"
+            value={
+              <a
+                href="https://calendly.com/sekhebesa/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 hover:text-sky-300 underline"
+              >
+                Schedule a Meeting
+              </a>
+            }
+            description="Book a complimentary 30-minute discovery call to discuss Enterprise AI, Azure AI, Generative AI, or technology consulting."
+          />
 
               <InfoCard
                 title="AI & Technology Collaboration"

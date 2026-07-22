@@ -23,7 +23,7 @@ export default function ArchitecturePreview() {
 
           <p className="mt-6 text-lg leading-8 text-slate-400">
             Designing secure, scalable AI solutions using Microsoft Azure
-            architecture patterns, cloud best practices, and Responsible AI
+            architecture patterns, cloud best practices and Responsible AI
             principles.
           </p>
 

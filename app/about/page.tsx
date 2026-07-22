@@ -57,7 +57,7 @@ export default function AboutPage() {
 
               I'm Josias Sekhebesa, an Enterprise AI Engineer specialising in
               Generative AI, Agentic AI, Retrieval-Augmented Generation (RAG),
-              Intelligent Automation, and Azure AI solutions.
+              Intelligent Automation and Azure AI solutions.
 
             </p>
 
@@ -65,8 +65,8 @@ export default function AboutPage() {
 
             <p className="mt-4 text-lg leading-8 text-slate-300">
 
-              I combine engineering, data science, business administration,
-              and enterprise technology to bridge the gap between AI innovation
+              I combine my academic background in Engineering, Data Science, Business Administration,
+              and Enterprise Technology to bridge the gap between AI innovation
               and real-world business impact.
 
             </p>
@@ -77,7 +77,7 @@ export default function AboutPage() {
 
               My focus is designing secure, scalable AI platforms that help
               organisations automate workflows, unlock insights from enterprise
-              data, and make better decisions through modern AI.
+              data and make better decisions through modern AI.
 
             </p>
 
@@ -96,7 +96,7 @@ export default function AboutPage() {
 
               <p className="mt-3 text-slate-400">
                 Microsoft-certified across Agentic AI, Azure AI Engineering,
-                Data Science, and Cloud Fundamentals.
+                Data Science and Cloud Fundamentals.
               </p>
 
 

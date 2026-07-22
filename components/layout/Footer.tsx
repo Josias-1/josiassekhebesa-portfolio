@@ -72,7 +72,7 @@ export default function Footer() {
           <div className="flex md:justify-end gap-5">
 
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/josias-sekhebesa/"
               target="_blank"
               className="text-sm text-slate-400 hover:text-sky-400 transition"
             >
@@ -81,11 +81,11 @@ export default function Footer() {
 
 
             <a
-              href="https://github.com"
+              href="https://calendly.com/sekhebesa/30min"
               target="_blank"
               className="text-sm text-slate-400 hover:text-sky-400 transition"
             >
-              GitHub
+              Book a call with me.
             </a>
 
           </div>

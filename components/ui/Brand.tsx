@@ -15,11 +15,6 @@ export default function Brand({
 
   return (
     <div className="flex items-center gap-4">
-      <div
-        className={`flex ${logoSizes[size]} items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 font-black text-white shadow-lg shadow-sky-500/20`}
-      >
-        JS
-      </div>
 
       <div>
         <h1 className="font-bold text-white">

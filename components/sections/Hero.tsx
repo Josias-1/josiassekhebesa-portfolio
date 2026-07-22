@@ -62,7 +62,7 @@ export default function Hero() {
 
 
               <a
-                href="/Josias-Sekhebesa-CV.pdf"
+                href="/JosiasSekhebesa_Summarized_Resume_072026.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
