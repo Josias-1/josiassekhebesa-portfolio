@@ -187,7 +187,7 @@ export default function ContactForm() {
 
         <div>
           <label className="mb-2 block text-sm text-slate-300">
-            Project Type
+            Topic
           </label>
 
           <select
@@ -201,13 +201,11 @@ export default function ContactForm() {
             className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-sky-500"
           >
             <option value="">Select...</option>
-            <option>Enterprise AI</option>
-            <option>Azure AI</option>
-            <option>Generative AI</option>
-            <option>AI Architecture</option>
-            <option>Consulting</option>
-            <option>Speaking Engagement</option>
-            <option>Other</option>
+            <option>Job Opportunity</option>
+            <option>AI Consulting</option>
+            <option>Speaking</option>
+            <option>Collaboration</option>
+            <option>General Question</option>
           </select>
         </div>
 
