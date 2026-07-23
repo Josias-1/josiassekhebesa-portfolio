@@ -20,7 +20,7 @@ export default function Experience() {
       role: "CTO & Co-Founder",
       period: "Mar 2024 – Feb 2025",
       summary:
-        "Defined the technology vision and cloud architecture for an EdTech platform, leading the design and delivery of a scalable Azure-based solution from concept to production.",
+        "Responsible for the technology vision and cloud architecture for an EdTech platform, leading the design and delivery of a scalable Azure-based solution from concept to production.",
       highlights: [
         "Azure Cloud Architecture",
         "Product Strategy",
