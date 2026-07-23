@@ -4,8 +4,8 @@ export const navigation = [
     href: "/",
   },
   {
-    title: "Playbook",
-    href: "/playbook",
+    title: "Experience",
+    href: "/experience",
   },
   {
     title: "Solutions",
@@ -16,8 +16,8 @@ export const navigation = [
     href: "/architecture",
   },
   {
-    title: "Experience",
-    href: "/experience",
+    title: "Articles",
+    href: "/playbook",
   },
   {
     title: "About",

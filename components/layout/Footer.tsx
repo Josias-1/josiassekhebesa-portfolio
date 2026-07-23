@@ -29,7 +29,7 @@ export default function Footer() {
 
             <p className="mt-2 text-sm text-slate-400">
               Enterprise AI Engineer building Generative AI,
-              Agentic AI, and Azure AI solutions.
+              Agentic AI and Azure AI solutions.
             </p>
           </div>
 

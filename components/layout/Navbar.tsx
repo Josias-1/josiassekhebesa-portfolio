@@ -136,7 +136,7 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className="mt-4 flex items-center rounded-xl border border-white/10 px-5 py-4 font-medium text-slate-300 transition hover:border-sky-500 hover:text-white"
               >
-                LinkedIn →
+                LinkedIn Profile
               </a>
 
             </div>

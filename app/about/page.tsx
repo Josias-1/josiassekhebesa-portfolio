@@ -85,24 +85,20 @@ export default function AboutPage() {
 
 
 
+
             {/* Microsoft Certifications */}
-            <div className="mt-10">
+            <div className="mt-12 rounded-2xl border border-slate-700 bg-slate-900/40 p-8">
 
-
-              <h2 className="text-2xl font-bold text-white">
-                Microsoft Certifications
-              </h2>
-
-
-              <p className="mt-3 text-slate-400">
-                Microsoft-certified across Agentic AI, Azure AI Engineering,
-                Data Science and Cloud Fundamentals.
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-400">
+                Microsoft Certified
               </p>
 
+              <p className="mt-4 max-w-2xl text-slate-400 leading-7">
+                Microsoft-certified across Enterprise AI, Azure AI, Data Science and
+                Cloud technologies.
+              </p>
 
-
-              <div className="mt-6 flex flex-wrap gap-3">
-
+              <div className="mt-8 space-y-4">
 
                 {[
                   "Agentic AI Business Solutions Architect Expert (AB-100)",
@@ -110,19 +106,38 @@ export default function AboutPage() {
                   "Azure Data Scientist Associate (DP-100)",
                   "Azure Fundamentals (AZ-900)",
                 ].map((cert) => (
-
-                  <span
+                  <div
                     key={cert}
-                    className="rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-sm text-sky-300"
+                    className="flex items-start gap-3"
                   >
-                    {cert}
-                  </span>
+                    <svg
+                      className="mt-1 h-5 w-5 flex-shrink-0 text-emerald-400"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
 
+                    <span className="text-lg text-slate-200">
+                      {cert}
+                    </span>
+                  </div>
                 ))}
-
 
               </div>
 
+              <a
+                href="/"
+                className="mt-8 inline-flex items-center font-semibold text-sky-400 transition hover:text-sky-300"
+              >
+                View Certifications on Homepage
+              </a>
 
             </div>
 
@@ -135,7 +150,7 @@ export default function AboutPage() {
 
 
               <h2 className="text-2xl font-bold text-white">
-                Technical Expertise
+                Core Technical Expertise
               </h2>
 
 

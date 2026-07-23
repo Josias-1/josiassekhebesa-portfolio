@@ -20,7 +20,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="CONTACT"
-        title="Let's Build Intelligent Solutions Together"
+        title="Let's discuss your next AI initiative."
         description="Interested in Enterprise AI, Generative AI, AI architecture, or technology collaboration? Let's discuss how AI can create measurable business impact."
       />
 
@@ -61,17 +61,22 @@ export default function ContactPage() {
                 Schedule a Meeting
               </a>
             }
-            description="Book a complimentary 30-minute discovery call to discuss Enterprise AI, Azure AI, Generative AI, or technology consulting."
+            description="Book a 30-minute call to discuss Enterprise AI, Azure AI, Generative AI or general technology opportunities."
           />
 
               <InfoCard
-                title="AI & Technology Collaboration"
+                title="How I Can Help"
                 value="Enterprise AI Solutions"
-                description="Architecture design, Generative AI, RAG systems, Agentic AI, and intelligent automation."
+                description="Enterprise AI
+                  Generative AI,
+                  Agentic AI,
+                  RAG Systems,
+                  AI Architecture,
+                  Intelligent Automation."
               />
 
               <InfoCard
-                title="Professional Network"
+                title="Connect on LinkedIn"
                 value={
                   <a
                     href={contact.socials[0].url}
@@ -105,7 +110,7 @@ export default function ContactPage() {
         <div className="mt-20 rounded-3xl border border-white/10 bg-slate-900/40 p-10 text-center">
 
           <h2 className="text-3xl font-bold text-white">
-            Building the future with AI?
+            Ready to discuss your next AI initiative?
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl leading-8 text-slate-400">
