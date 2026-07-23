@@ -14,6 +14,7 @@ export const metadata: Metadata = createMetadata({
 });
 
 export default function SolutionsPage() {
+  
   return (
     <>
       <PageHero

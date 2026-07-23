@@ -12,7 +12,7 @@ export default function CTA() {
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400">
           Whether you're exploring Enterprise AI,
-          Azure, Agentic AI, or intelligent automation,
+          Azure, Agentic AI or intelligent automation,
           I'd love to hear about your project.
         </p>
 
