@@ -3,6 +3,8 @@ import { Geist } from "next/font/google";
 
 import "./globals.css";
 
+import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -38,14 +40,17 @@ export default function RootLayout({
 
         {children}
 
-        <Footer />
+      <Footer />
 
-        {/* Google Analytics */}
-        <GoogleAnalytics />
+      {/* Google Analytics */}
+      <GoogleAnalytics />
 
-        {/* Vercel Analytics */}
-        <Analytics />
-      </body>
+      {/* Microsoft Clarity */}
+      <MicrosoftClarity />
+
+      {/* Vercel Analytics */}
+      <Analytics />
+            </body>
     </html>
   );
 }
