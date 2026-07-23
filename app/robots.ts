@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+const baseUrl = "https://www.josiassekhebesa.com";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -9,8 +11,8 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
 
-    sitemap: "https://josiassekhebesa.com/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
 
-    host: "https://josiassekhebesa.com",
+    host: baseUrl,
   };
 }

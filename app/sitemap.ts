@@ -1,42 +1,40 @@
 import { MetadataRoute } from "next";
 
+const baseUrl = "https://www.josiassekhebesa.com";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://josiassekhebesa.com";
+  const lastModified = new Date();
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 1.0,
     },
-
     {
       url: `${baseUrl}/experience`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
-
     {
       url: `${baseUrl}/solutions`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      lastModified,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
-
     {
       url: `${baseUrl}/playbook`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
-
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 }
