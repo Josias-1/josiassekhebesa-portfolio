@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-const siteUrl = "https://josiassekhebesa.com";
+const siteUrl = "https://www.josiassekhebesa.com";
 
 export const siteConfig = {
   name: "Josias Sekhebesa",
@@ -48,37 +48,63 @@ export function createMetadata({
   const url = `${siteConfig.url}${path}`;
 
   return {
+    metadataBase: new URL(siteConfig.url),
+
     title: title ?? siteConfig.title,
 
-    description:
-      description ?? siteConfig.description,
+    description: description ?? siteConfig.description,
+
+    applicationName: siteConfig.name,
 
     keywords: siteConfig.keywords,
 
-    metadataBase: new URL(siteConfig.url),
+    authors: [
+      {
+        name: siteConfig.creator,
+      },
+    ],
+
+    creator: siteConfig.creator,
+
+    publisher: siteConfig.creator,
+
+    category: "Technology",
+
+    referrer: "origin-when-cross-origin",
+
+    verification: {
+      google: "PSY7MCvtq_mH5aVjMgPAnr8sql_jFb-wz-xvyecD_GE",
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+        "max-snippet": -1,
+      },
+    },
 
     alternates: {
       canonical: url,
     },
 
-    // icons: {
-    //   icon: "/icon.png",
-    //   apple: "/apple-touch-icon.png",
-    // },
-
     openGraph: {
       title: title ?? siteConfig.title,
 
-      description:
-        description ?? siteConfig.description,
+      description: description ?? siteConfig.description,
 
       url,
 
       siteName: siteConfig.name,
 
-      type: "website",
-
       locale: "en_ZA",
+
+      type: "website",
 
       images: [
         {
@@ -95,20 +121,11 @@ export function createMetadata({
 
       title: title ?? siteConfig.title,
 
-      description:
-        description ?? siteConfig.description,
+      description: description ?? siteConfig.description,
+
+      creator: "@josiassekhe", // Replace if you have an X/Twitter handle
 
       images: [siteConfig.ogImage],
     },
-
-    authors: [
-      {
-        name: siteConfig.creator,
-      },
-    ],
-
-    creator: siteConfig.creator,
-
-    category: "Technology",
   };
 }
