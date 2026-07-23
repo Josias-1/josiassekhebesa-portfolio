@@ -1,15 +1,16 @@
 import { Metadata } from "next";
 import { Geist } from "next/font/google";
 
-import { Analytics } from "@vercel/analytics/next"
-
 import "./globals.css";
-import { personSchema } from "@/lib/structured-data";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 import { createMetadata } from "@/lib/seo";
+import { personSchema } from "@/lib/structured-data";
+
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { Analytics } from "@vercel/analytics/next";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -24,24 +25,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-    <body className={`${geist.className} bg-[#060B14] text-white`}>
+      <body className={`${geist.className} bg-[#060B14] text-white`}>
+        {/* Structured Data (SEO) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personSchema),
+          }}
+        />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personSchema),
-        }}
-      />
+        <Navbar />
 
-      <Navbar />
+        {children}
 
-      {children}
+        <Footer />
 
-      <Footer />
+        {/* Google Analytics */}
+        <GoogleAnalytics />
 
-      <Analytics />
-
-    </body>
+        {/* Vercel Analytics */}
+        <Analytics />
+      </body>
     </html>
   );
 }
