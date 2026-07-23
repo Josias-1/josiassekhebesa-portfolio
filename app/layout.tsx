@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { Analytics } from "@vercel/analytics/next"
+
 import "./globals.css";
 import { personSchema } from "@/lib/structured-data";
 
